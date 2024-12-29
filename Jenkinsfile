@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/<your-username>/SimpleTodoPython.git'
+                git branch: 'main', url: 'https://github.com/BahaaAhmed_Hub/SimpleTodoPython.git'
             }
         }
 
