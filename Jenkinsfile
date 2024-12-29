@@ -2,32 +2,32 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_REGISTRY = 'your-dockerhub-user' // Replace with your DockerHub username
+        ACR_NAME = 'simpletodo1acr'  // Replace with your ACR name
     }
 
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/BahaaAhmed_Hub/SimpleTodoPython.git'
+                git branch: 'main', url: 'https://github.com/BahaaAhmed-Hub/SimpleTodoPython.git'
             }
         }
 
         stage('Build Docker Images') {
             steps {
                 dir('backend') {
-                    sh 'docker build -t $DOCKER_REGISTRY/backend:latest .'
+                    sh 'docker build -t $ACR_NAME.azurecr.io/backend:latest .'
                 }
                 dir('frontend') {
-                    sh 'docker build -t $DOCKER_REGISTRY/frontend:latest .'
+                    sh 'docker build -t $ACR_NAME.azurecr.io/frontend:latest .'
                 }
             }
         }
 
         stage('Push Docker Images') {
             steps {
-                withDockerRegistry([credentialsId: 'dockerhub-credentials', url: '']) {
-                    sh 'docker push $DOCKER_REGISTRY/backend:latest'
-                    sh 'docker push $DOCKER_REGISTRY/frontend:latest'
+                withDockerRegistry([credentialsId: 'acr-credentials', url: 'https://$ACR_NAME.azurecr.io']) {
+                    sh 'docker push $ACR_NAME.azurecr.io/backend:latest'
+                    sh 'docker push $ACR_NAME.azurecr.io/frontend:latest'
                 }
             }
         }
