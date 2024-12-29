@@ -7,13 +7,13 @@ pipeline {
 
     stages {
         stage('Clone Repository') {
-            //steps {
-                steps {
-                    git credentialsId: 'github-credentials-id', branch: 'main', url: 'https://github.com/BahaaAhmed-Hub/SimpleTodoPython.git'
-                        }
+            steps {
+                //steps {
+                  //  git credentialsId: 'github-credentials-id', branch: 'main', url: 'https://github.com/BahaaAhmed-Hub/SimpleTodoPython.git'
+                    //    }
 
-               // git branch: 'main', url: 'https://github.com/BahaaAhmed-Hub/SimpleTodoPython.git'
-            //}
+               git branch: 'main', url: 'https://github.com/BahaaAhmed-Hub/SimpleTodoPython.git'
+            }
         }
 
         stage('Build Docker Images') {
