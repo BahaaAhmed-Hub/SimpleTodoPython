@@ -9,7 +9,7 @@ pipeline {
         stage('Clone Repository') {
            // steps {
                 steps {
-                    git credentialsId: 'GitHub Personal Access Token2', branch: 'main', url: 'https://github.com/BahaaAhmed-Hub/SimpleTodoPython.git'
+                    git credentialsId: 'GitHubPAT3', branch: 'main', url: 'https://github.com/BahaaAhmed-Hub/SimpleTodoPython.git'
                         }
 
               // git branch: 'main', url: 'https://github.com/BahaaAhmed-Hub/SimpleTodoPython.git'
