@@ -12,7 +12,7 @@ pipeline {
                 nexusArtifactUploader(
                     nexusVersion: 'nexus3',
                     protocol: 'http',
-                    nexusUrl: 'http://nexus.example.com:8081',
+                    nexusUrl: 'http://57.152.98.224/:8081',
                     repository: 'my-repo',
                     groupId: 'com.example',
                     version: '1.0.0',
