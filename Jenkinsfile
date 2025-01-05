@@ -21,6 +21,7 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
+                sh 'curl -u jenkins-userID:nexus http://57.152.98.224:8081/service/rest/v1/repositories'
                 dir('backend') {
                     //sh 'docker build -t $ACR_NAME.azurecr.io/backend:latest .'
                     echo 'Building backend docker Image'
@@ -34,7 +35,7 @@ pipeline {
             }
         }
 
-        stage('Push Docker Images') {
+        /*stage('Push Docker Images') {
             steps {
                 withDockerRegistry([credentialsId: 'acr-credentials', url: 'https://$ACR_NAME.azurecr.io']) {
                     sh 'docker push $ACR_NAME.azurecr.io/backend:latest'
@@ -48,6 +49,6 @@ pipeline {
                 sh 'kubectl apply -f k8s/deployment-backend.yaml'
                 sh 'kubectl apply -f k8s/deployment-frontend.yaml'
             }
-        }
+        }*/
     }
 }
