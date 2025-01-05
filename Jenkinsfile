@@ -1,9 +1,12 @@
 pipeline {
     agent any
-
     environment {
-        ACR_NAME = 'simpletodo1acr'  // Replace with your ACR name
+        NEXUS_CREDS = credentials('NexusRepo')
+        NEXUS_DOCKER_REPO = 'http://57.152.98.224:8081/repository/Docker13/'
     }
+    /*environment {
+        ACR_NAME = 'simpletodo1acr'  // Replace with your ACR name
+    }*/
 
     stages {
         stage('Clone Repository') {
@@ -19,10 +22,14 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 dir('backend') {
-                    sh 'docker build -t $ACR_NAME.azurecr.io/backend:latest .'
+                    //sh 'docker build -t $ACR_NAME.azurecr.io/backend:latest .'
+                    echo 'Building backend docker Image'
+                    sh 'docker build -t $NEXUS_DOCKER_REPO/backend:$BUILD_NUMBER .'
                 }
                 dir('frontend') {
-                    sh 'docker build -t $ACR_NAME.azurecr.io/frontend:latest .'
+                    //sh 'docker build -t $ACR_NAME.azurecr.io/frontend:latest .'
+                    echo 'Building frontend docker Image'
+                    sh 'docker build -t $NEXUS_DOCKER_REPO/frontend:$BUILD_NUMBER .'
                 }
             }
         }
