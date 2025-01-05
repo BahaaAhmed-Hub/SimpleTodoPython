@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        NEXUS_CREDS = credentials('NexusRepo')
+        NEXUS_CREDS = credentials('NexusRepoCredentials')
         NEXUS_DOCKER_REPO = 'http://57.152.98.224:8081/repository/Docker13/'
     }
     /*environment {
