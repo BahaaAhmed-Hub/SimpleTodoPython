@@ -18,6 +18,22 @@ pipeline {
               // git branch: 'main', url: 'https://github.com/BahaaAhmed-Hub/SimpleTodoPython.git'
             //}
         }
+        stage('Upload Artifact to Nexus') {
+            steps {
+            echo "Uploading artifact to Nexus..."
+            nexusArtifactUploader(
+                nexusVersion: 'nexus3',
+                protocol: 'http',
+                nexusUrl: 'http://57.152.98.224:8081',
+                credentialsId: 'NexusRepoCredentials',
+                groupId: 'com.mycompany',
+                artifactId: 'my-app',
+                version: '1.0',
+                repository: 'Docker13',
+                artifacts: [[file: 'target/my-app-1.0.jar', classifier: '', type: 'jar']]
+            )
+        }
+    }
 
         stage('Build Docker Images') {
             steps {
