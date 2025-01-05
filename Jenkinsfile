@@ -10,18 +10,15 @@ pipeline {
 
     stages {
         stage('Clone Repository') {
-           // steps {
                 steps {
-                    git credentialsId: 'GitHubPATnew13', branch: 'main', url: 'https://github.com/BahaaAhmed-Hub/SimpleTodoPython.git'
-                        }
-
-              // git branch: 'main', url: 'https://github.com/BahaaAhmed-Hub/SimpleTodoPython.git'
-            //}
+                    //git credentialsId: 'GitHubPATnew13', branch: 'main', url: 'https://github.com/BahaaAhmed-Hub/SimpleTodoPython.git'
+                    git branch: 'main', url: 'https://github.com/BahaaAhmed-Hub/SimpleTodoPython.git'
+                }
         }
         
         stage('Build Docker Images') {
             steps {
-                sh 'curl -u jenkins-userID:nexus http://57.152.98.224:8081/service/rest/v1/repositories'
+                sh 'curl -u jenkins-userID:jenkins-userID http://57.152.98.224:8081/service/rest/v1/repositories'
                 dir('backend') {
                     //sh 'docker build -t $ACR_NAME.azurecr.io/backend:latest .'
                     echo 'Building backend docker Image'
