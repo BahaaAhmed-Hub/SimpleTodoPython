@@ -11,8 +11,8 @@ pipeline {
     stages {
         stage('Clone Repository') {
                 steps {
-                    //git credentialsId: 'GitHubPATnew13', branch: 'main', url: 'https://github.com/BahaaAhmed-Hub/SimpleTodoPython.git'
-                    git branch: 'main', url: 'https://github.com/BahaaAhmed-Hub/SimpleTodoPython.git'
+                    git credentialsId: 'GitHubPATnew13', branch: 'main', url: 'https://github.com/BahaaAhmed-Hub/SimpleTodoPython.git'
+                    //git branch: 'main', url: 'https://github.com/BahaaAhmed-Hub/SimpleTodoPython.git'
                 }
         }
         
